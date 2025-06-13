@@ -36,8 +36,6 @@ export default function App() {
     setModalOnClose(false);
   };
 
-  console.log(data?.totalPages);
-
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
