@@ -1,8 +1,4 @@
 import css from "./SearchBox.module.css";
-// import { fetchNotes } from "../../services/noteService";
-// import { useQuery } from "@tanstack/react-query";
-// import type { Notes } from "../../types/note";
-// import { useState } from "react";
 
 interface SearchBoxProps {
   value: string;

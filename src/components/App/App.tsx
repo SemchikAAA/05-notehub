@@ -7,9 +7,13 @@ import SearchBox from "../SearchBox/SearchBox";
 import Pagination from "../Pagination/Pagination";
 import { useDebounce } from "use-debounce";
 import NoteModal from "../NoteModal/NoteModal";
+import SortFilter from "../SortFilter/SortFilter";
+import type { Tag } from "../../types/note";
 
 export default function App() {
   const [searchQuery, setQuery] = useState("");
+
+  const [sortQuery, setSortQuery] = useState<Tag>("Personal");
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -21,8 +25,8 @@ export default function App() {
   const [debounceQuery] = useDebounce(searchQuery, 500);
 
   const { data, isSuccess } = useQuery({
-    queryKey: ["tasks", debounceQuery, currentPage],
-    queryFn: () => fetchNotes({ searchQuery, currentPage }),
+    queryKey: ["tasks", debounceQuery, currentPage, sortQuery],
+    queryFn: () => fetchNotes({ searchQuery, currentPage, sortQuery }),
     // enabled: query !== "",
   });
 
@@ -40,6 +44,8 @@ export default function App() {
     <div className={css.app}>
       <header className={css.toolbar}>
         <SearchBox value={searchQuery} onSearch={setQuery} />
+
+        <SortFilter changeTag={setSortQuery} />
 
         {isSuccess && totalPages > 1 && (
           <Pagination
