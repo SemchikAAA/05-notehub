@@ -47,7 +47,7 @@ export default function App() {
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}
-            onPageChange={() => onPageChange}
+            onPageChange={onPageChange}
           />
         )}
 
