@@ -23,6 +23,7 @@ export async function fetchNotes({
       search: searchQuery || undefined,
       page: currentPage,
       tag: "Personal",
+      perPage: 9,
     },
     headers: { Authorization: `Bearer ${myToken}` },
   });
